@@ -44,7 +44,7 @@ export default {
 
 <style lang="scss" scoped>
 .form {
-  max-width: 332px;
+  //max-width: 332px;
   padding: 24px;
   background: #fffefb;
   box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04),

@@ -73,8 +73,10 @@ export default {
 .cards {
   display: flex;
   //align-items: flex-start;
-  max-width: 1028px;
-  margin: 0 0 0 percentage(16/1376);
+  //max-width: 1028px;
+  width: percentage(1028/1376);
+  //margin: 0 0 0 percentage(16/1376);
+  margin: 0 0 0 16px;
   justify-content: space-between;
   flex-wrap: wrap;
 
@@ -85,6 +87,7 @@ export default {
 
   @media screen and (max-width: $tablet - 1px) {
     display: block;
+    width: 100%;
     margin: 16px 0 0;
   }
 
@@ -133,11 +136,11 @@ export default {
     }
 
     &__image {
-      display: block;
+      //display: block;
       //min-height: 200px;
-      height: auto;
-      width: 100%;
-      object-fit: cover;
+      //height: auto;
+      //width: 100%;
+      //object-fit: cover;
     }
 
     &__info {
