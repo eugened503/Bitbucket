@@ -2,16 +2,14 @@
   <div class="cards">
     <article class="card" v-for="(item, index) in items" :key="index">
       <button class="card__button">
-        <img
-          class="card__button-image"
-          src="../assets/images/delete.svg"
-          alt=""
-        />
+        <img src="../assets/images/delete.svg" alt="" />
       </button>
       <img class="card__image" :src="item.image" alt="" />
-      <h3 class="card__title">{{ item.title }}</h3>
-      <p class="card__desc">{{ item.desc }}</p>
-      <p class="card__price">{{ item.price }}</p>
+      <div class="card__info">
+        <h3 class="card__title">{{ item.title }}</h3>
+        <p class="card__desc">{{ item.desc }}</p>
+        <p class="card__price">{{ item.price }}</p>
+      </div>
     </article>
   </div>
 </template>
@@ -66,5 +64,93 @@ export default {
 
 <style lang="scss" scoped>
 .cards {
+  display: flex;
+  align-items: flex-start;
+  max-width: 1028px;
+  margin: 0 0 0 percentage(16/1376);
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  @media screen and (max-width: $laptop-small - 1px) {
+    display: block;
+  }
+
+  @media screen and (max-width: $tablet - 1px) {
+    margin: 16px 0 0;
+  }
+
+  .card {
+    position: relative;
+    margin: 0 0 16px;
+    width: percentage(332/1028);
+    //width: 332px;
+    background: #fffefb;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04),
+      0px 6px 10px rgba(0, 0, 0, 0.02);
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover .card__button {
+      display: flex;
+    }
+
+    @media screen and (max-width: $laptop-small - 1px) {
+      width: 100%;
+    }
+
+    &__button {
+      position: absolute;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      width: 32px;
+      height: 32px;
+      top: -8px;
+      right: -8px;
+      background: $color-carrot;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      transition: background 0.3s ease-in;
+
+      &:hover {
+        background: #fa5050;
+      }
+    }
+
+    &__image {
+      display: block;
+      //min-height: 200px;
+      height: auto;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    &__info {
+      padding: 0 16px 24px;
+    }
+
+    &__title {
+      margin: 16px 0 0;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 25px;
+      color: #3f3f3f;
+    }
+
+    &__desc {
+      margin: 16px 0 0;
+      font-size: 16px;
+      line-height: 20px;
+      color: #3f3f3f;
+    }
+
+    &__price {
+      margin: 32px 0 0;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 30px;
+      color: #3f3f3f;
+    }
+  }
 }
 </style>

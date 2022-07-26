@@ -51,6 +51,10 @@ export default {
     0px 6px 10px rgba(0, 0, 0, 0.02);
   border-radius: 4px;
 
+  @media screen and (max-width: $laptop-small - 1px) {
+    max-width: none;
+  }
+
   &__field {
     .textarea {
       min-height: 108px;
@@ -142,12 +146,17 @@ export default {
     font-size: 12px;
     line-height: 15px;
     color: #ffffff;
+    transition: background 0.3s ease-in;
 
-    &:disabled {
-      color: #b4b4b4;
-      background: #eeeeee;
-      box-shadow: none;
+    &:hover {
+      background: #54ac46;
     }
+
+    // &:disabled {
+    //   color: #b4b4b4;
+    //   background: #eeeeee;
+    //   box-shadow: none;
+    // }
   }
 }
 </style>

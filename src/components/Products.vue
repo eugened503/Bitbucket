@@ -6,7 +6,7 @@
     </div>
     <div class="products__body">
       <Form />
-      <!-- <Cards /> -->
+      <Cards />
     </div>
   </div>
 </template>
@@ -14,10 +14,10 @@
 <script>
 import Select from "@/components/Select.vue";
 import Form from "@/components/Form.vue";
-//import Cards from "@/components/Cards.vue";
+import Cards from "@/components/Cards.vue";
+
 export default {
-  //components: { Form, Cards },
-  components: { Select, Form },
+  components: { Select, Form, Cards },
   name: "ProductsBlock",
 };
 </script>
@@ -46,6 +46,13 @@ export default {
 
   &__body {
     margin: 16px 0 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    @media screen and (max-width: $tablet - 1px) {
+      display: block;
+    }
   }
 }
 </style>
