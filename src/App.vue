@@ -1,10 +1,12 @@
 <template>
   <Form />
+  <Cards />
 </template>
 <script>
 import Form from "@/components/Form.vue";
+import Cards from "@/components/Cards.vue";
 export default {
-  components: { Form },
+  components: { Form, Cards },
   name: "App",
 };
 </script>
