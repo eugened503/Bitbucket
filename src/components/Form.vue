@@ -120,6 +120,7 @@ export default {
   &__error-wrapper {
     min-height: 16px;
   }
+
   &__error {
     display: none;
     margin: 4px 0 0;

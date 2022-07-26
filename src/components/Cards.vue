@@ -23,7 +23,13 @@ export default {
         {
           image: require("../assets/images/polaroid.jpg"),
           title: "Наименование товара",
-          desc: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
+          desc: "Довольно-таки интересное описание товара в несколько строк",
+          price: "10 000 руб.",
+        },
+        {
+          image: require("../assets/images/polaroid.jpg"),
+          title: "Наименование товара",
+          desc: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
           price: "10 000 руб.",
         },
         {
@@ -41,19 +47,13 @@ export default {
         {
           image: require("../assets/images/polaroid.jpg"),
           title: "Наименование товара",
-          desc: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
+          desc: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
           price: "10 000 руб.",
         },
         {
           image: require("../assets/images/polaroid.jpg"),
           title: "Наименование товара",
-          desc: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
-          price: "10 000 руб.",
-        },
-        {
-          image: require("../assets/images/polaroid.jpg"),
-          title: "Наименование товара",
-          desc: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
+          desc: "Довольно-таки интересное",
           price: "10 000 руб.",
         },
       ],
@@ -65,14 +65,15 @@ export default {
 <style lang="scss" scoped>
 .cards {
   display: flex;
-  align-items: flex-start;
+  //align-items: flex-start;
   max-width: 1028px;
   margin: 0 0 0 percentage(16/1376);
   justify-content: space-between;
   flex-wrap: wrap;
 
   @media screen and (max-width: $laptop-small - 1px) {
-    display: block;
+    //display: block;
+    flex-direction: column;
   }
 
   @media screen and (max-width: $tablet - 1px) {
@@ -81,6 +82,8 @@ export default {
 
   .card {
     position: relative;
+    display: flex;
+    flex-direction: column;
     margin: 0 0 16px;
     width: percentage(332/1028);
     //width: 332px;
@@ -126,7 +129,11 @@ export default {
     }
 
     &__info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
       padding: 0 16px 24px;
+      //min-height: 207px;
     }
 
     &__title {
@@ -138,14 +145,28 @@ export default {
     }
 
     &__desc {
-      margin: 16px 0 0;
+      display: -webkit-box;
+      margin: 16px 0 32px;
       font-size: 16px;
       line-height: 20px;
       color: #3f3f3f;
+      overflow: hidden;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+
+      @media screen and (max-width: 1089px) {
+        -webkit-line-clamp: 3;
+      }
+
+      @media screen and (max-width: $laptop-small - 1px) {
+        -webkit-line-clamp: 2;
+        min-height: 40px;
+      }
     }
 
     &__price {
-      margin: 32px 0 0;
+      //margin: 32px 0 0;
+      margin: auto 0 0;
       font-weight: 600;
       font-size: 24px;
       line-height: 30px;
