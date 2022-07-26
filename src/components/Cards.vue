@@ -22,7 +22,8 @@ export default {
       items: [
         {
           image: require("../assets/images/polaroid.jpg"),
-          title: "Наименование товара",
+          title:
+            "Наименование товара интересное описание товара в несколько строк",
           desc: "Довольно-таки интересное описание товара в несколько строк",
           price: "10 000 руб.",
         },
@@ -54,7 +55,13 @@ export default {
           image: require("../assets/images/polaroid.jpg"),
           title: "Наименование товара",
           desc: "Довольно-таки интересное",
-          price: "10 000 руб.",
+          price: "10 000 000 000 000 000 000",
+        },
+        {
+          image: require("../assets/images/polaroid.jpg"),
+          title: "Наименование товара",
+          desc: "Довольно-таки интересное",
+          price: "10 000 000 000 000 000",
         },
       ],
     };
@@ -73,10 +80,11 @@ export default {
 
   @media screen and (max-width: $laptop-small - 1px) {
     //display: block;
-    flex-direction: column;
+    //flex-direction: column;
   }
 
   @media screen and (max-width: $tablet - 1px) {
+    display: block;
     margin: 16px 0 0;
   }
 
@@ -98,6 +106,10 @@ export default {
     }
 
     @media screen and (max-width: $laptop-small - 1px) {
+      width: calc(50% - 8px);
+    }
+
+    @media screen and (max-width: $tablet - 1px) {
       width: 100%;
     }
 
@@ -142,6 +154,10 @@ export default {
       font-size: 20px;
       line-height: 25px;
       color: #3f3f3f;
+      word-wrap: break-word;
+      // white-space: nowrap;
+      // overflow: hidden;
+      // text-overflow: ellipsis;
     }
 
     &__desc {
@@ -160,7 +176,7 @@ export default {
 
       @media screen and (max-width: $laptop-small - 1px) {
         -webkit-line-clamp: 2;
-        min-height: 40px;
+        //min-height: 40px;
       }
     }
 
@@ -171,6 +187,10 @@ export default {
       font-size: 24px;
       line-height: 30px;
       color: #3f3f3f;
+      word-wrap: break-word;
+      // white-space: nowrap;
+      // overflow: hidden;
+      // text-overflow: ellipsis;
     }
   }
 }
