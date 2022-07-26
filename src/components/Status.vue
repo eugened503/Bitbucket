@@ -48,7 +48,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .status {
   margin: 103px 0 0;
   //min-height: 478px;
