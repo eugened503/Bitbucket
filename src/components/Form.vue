@@ -32,7 +32,7 @@
         <span class="form__error">Поле является обязательным</span>
       </div>
     </div>
-    <button class="form__button" type="submit">Добавить товар</button>
+    <button class="form__button" type="submit" disabled>Добавить товар</button>
   </form>
 </template>
 
@@ -142,6 +142,12 @@ export default {
     font-size: 12px;
     line-height: 15px;
     color: #ffffff;
+
+    &:disabled {
+      color: #b4b4b4;
+      background: #eeeeee;
+      box-shadow: none;
+    }
   }
 }
 </style>
