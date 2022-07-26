@@ -152,11 +152,11 @@ export default {
       background: #54ac46;
     }
 
-    // &:disabled {
-    //   color: #b4b4b4;
-    //   background: #eeeeee;
-    //   box-shadow: none;
-    // }
+    &:disabled {
+      color: #b4b4b4;
+      background: #eeeeee;
+      box-shadow: none;
+    }
   }
 }
 </style>
