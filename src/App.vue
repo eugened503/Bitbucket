@@ -1,7 +1,9 @@
 <template>
   <div class="products">
-    <h1 class="products__title">Добавление товара</h1>
-    <Select />
+    <div class="products__header">
+      <h1 class="products__title">Добавление товара</h1>
+      <Select />
+    </div>
     <!-- <Form />
     <Cards /> -->
   </div>
@@ -31,8 +33,17 @@ export default {
   margin: 0 auto;
   padding: 32px;
 
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
   &__title {
-    margin: 0;
+    margin: 0 10px 0 0;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 35px;
   }
 }
 </style>
