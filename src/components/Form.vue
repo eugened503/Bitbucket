@@ -104,7 +104,7 @@ export default {
 
       this.name = this.desc = this.link = this.price = "";
       this.v$.$reset();
-      console.log(this.$store.state.items);
+      //console.log(this.$store.state.items);
     },
   },
 

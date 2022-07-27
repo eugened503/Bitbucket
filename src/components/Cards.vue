@@ -1,6 +1,6 @@
 <template>
-  <div class="cards">
-    <article class="card" v-for="(item, index) in cards" :key="index">
+  <transition-group name="list" tag="div" class="cards">
+    <article class="card" v-for="item in cards" :key="item">
       <button class="card__button">
         <img src="../assets/images/delete.svg" alt="" />
       </button>
@@ -11,7 +11,7 @@
         <p class="card__price">{{ item.price }} руб.</p>
       </div>
     </article>
-  </div>
+  </transition-group>
 </template>
 
 <script>
@@ -56,6 +56,7 @@ export default {
     box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04),
       0px 6px 10px rgba(0, 0, 0, 0.02);
     border-radius: 4px;
+    //transition: all 1s;
     cursor: pointer;
 
     &:hover .card__button {
@@ -150,5 +151,13 @@ export default {
       word-wrap: break-word;
     }
   }
+}
+.list-leave-active {
+  transform: translate(0, 100%);
+  opacity: 0;
+  transition: all 0.7s;
+}
+.list-move {
+  transition: transform 0.7s;
 }
 </style>

@@ -39,12 +39,6 @@ export default createStore({
         desc: "Довольно-таки интересное",
         price: "1000 000 000",
       },
-      {
-        link: require("@/assets/images/polaroid.jpg"),
-        name: "Наименование товара",
-        desc: "Довольно-таки интересное",
-        price: "15 000",
-      },
     ],
   },
   actions: {
