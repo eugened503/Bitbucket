@@ -72,18 +72,11 @@ export default {
 <style lang="scss" scoped>
 .cards {
   display: flex;
-  //align-items: flex-start;
-  //max-width: 1028px;
   width: percentage(1028/1376);
   //margin: 0 0 0 percentage(16/1376);
   margin: 0 0 0 16px;
   justify-content: space-between;
   flex-wrap: wrap;
-
-  @media screen and (max-width: $laptop-small - 1px) {
-    //display: block;
-    //flex-direction: column;
-  }
 
   @media screen and (max-width: $tablet - 1px) {
     display: block;
@@ -97,7 +90,6 @@ export default {
     flex-direction: column;
     margin: 0 0 16px;
     width: percentage(332/1028);
-    //width: 332px;
     background: #fffefb;
     box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04),
       0px 6px 10px rgba(0, 0, 0, 0.02);
@@ -158,9 +150,6 @@ export default {
       line-height: 25px;
       color: #3f3f3f;
       word-wrap: break-word;
-      // white-space: nowrap;
-      // overflow: hidden;
-      // text-overflow: ellipsis;
     }
 
     &__desc {
@@ -184,16 +173,12 @@ export default {
     }
 
     &__price {
-      //margin: 32px 0 0;
       margin: auto 0 0;
       font-weight: 600;
       font-size: 24px;
       line-height: 30px;
       color: #3f3f3f;
       word-wrap: break-word;
-      // white-space: nowrap;
-      // overflow: hidden;
-      // text-overflow: ellipsis;
     }
   }
 }
