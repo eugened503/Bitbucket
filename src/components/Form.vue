@@ -3,12 +3,17 @@
     <div class="form__field">
       <label class="form__label">Наименование товара</label>
       <input
+        v-model="name"
+        :v="v$.name"
         type="text"
         class="form__input"
+        :class="{ error: v$.name.$errors.length }"
         placeholder="Введите наименование товара"
       />
-      <div class="form__error-wrapper">
-        <span class="form__error">Поле является обязательным</span>
+      <div class="form__errors">
+        <div v-for="(error, index) of v$.name.$errors" :key="index">
+          <p class="form__error">{{ error.$message }}</p>
+        </div>
       </div>
     </div>
     <div class="form__field">
@@ -16,35 +21,85 @@
       <textarea
         class="textarea form__input"
         placeholder="Введите описание товара"
+        v-model="desc"
       />
     </div>
     <div class="form__field">
       <label class="form__label">Ссылка на изображение товара</label>
-      <input type="text" class="form__input" placeholder="Введите ссылку" />
-      <div class="form__error-wrapper">
-        <span class="form__error">Поле является обязательным</span>
+      <input
+        type="text"
+        class="form__input"
+        :class="{ error: v$.link.$errors.length }"
+        v-model="link"
+        :v="v$.link"
+        placeholder="Введите ссылку"
+      />
+      <div class="form__errors">
+        <div v-for="(error, index) of v$.link.$errors" :key="index">
+          <p class="form__error">{{ error.$message }}</p>
+        </div>
       </div>
     </div>
     <div class="form__field">
       <label class="form__label">Цена товара</label>
-      <input type="text" class="form__input" placeholder="Введите цену" />
-      <div class="form__error-wrapper">
-        <span class="form__error">Поле является обязательным</span>
+      <input
+        type="text"
+        class="form__input"
+        :class="{ error: v$.price.$errors.length }"
+        placeholder="Введите цену"
+        v-model="price"
+        :v="v$.price"
+      />
+      <div class="form__errors">
+        <div v-for="(error, index) of v$.price.$errors" :key="index">
+          <p class="form__error">{{ error.$message }}</p>
+        </div>
       </div>
     </div>
-    <button class="form__button" type="submit" disabled>Добавить товар</button>
+    <button class="form__button" type="submit" :disabled="v$.$invalid">
+      Добавить товар
+    </button>
   </form>
 </template>
 
 <script>
+import useVuelidate from "@vuelidate/core";
+import { required, helpers } from "@vuelidate/validators";
 export default {
   name: "FormBlock",
+  setup() {
+    return { v$: useVuelidate() };
+  },
+  data() {
+    return {
+      name: null,
+      desc: null,
+      link: null,
+      price: null,
+    };
+  },
+
+  validations() {
+    return {
+      name: {
+        $autoDirty: true,
+        required: helpers.withMessage("Поле является обязательным", required),
+      },
+      link: {
+        $autoDirty: true,
+        required: helpers.withMessage("Поле является обязательным", required),
+      },
+      price: {
+        $autoDirty: true,
+        required: helpers.withMessage("Поле является обязательным", required),
+      },
+    };
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .form {
-  //max-width: 332px;
   padding: 24px;
   background: #fffefb;
   box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04),
@@ -97,13 +152,19 @@ export default {
       border-radius: 50%;
     }
   }
+
+  &__errors {
+    margin: 4px 0 0;
+    min-height: 10px;
+  }
+
   &__input {
     display: block;
     margin: 4px 0 0;
     width: 100%;
     padding: 10px 16px 11px;
     background: #fffefb;
-    border: none;
+    border: 1px solid transparent;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     font-size: 12px;
@@ -115,19 +176,21 @@ export default {
       line-height: 15px;
       color: #b4b4b4;
     }
-  }
 
-  &__error-wrapper {
-    min-height: 16px;
+    &.error {
+      border: 1px solid #ff8484;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      animation: fade-in 0.7s ease-in;
+    }
   }
 
   &__error {
-    display: none;
-    margin: 4px 0 0;
     font-size: 8px;
     line-height: 10px;
     letter-spacing: -0.02em;
     color: $color-carrot;
+    animation: fade-in 0.7s ease-in;
 
     &.active {
       display: block;
@@ -147,7 +210,7 @@ export default {
     font-size: 12px;
     line-height: 15px;
     color: #ffffff;
-    transition: background 0.3s ease-in;
+    transition: background 0.7s ease-in;
 
     &:hover {
       background: #54ac46;
@@ -158,6 +221,15 @@ export default {
       background: #eeeeee;
       box-shadow: none;
     }
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 </style>

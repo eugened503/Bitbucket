@@ -27,7 +27,7 @@ export default {
     right: 16px;
     //transform: translate(50%, -50%);
     //margin-top: -8px;
-    display: block;
+    //display: block;
     width: 8px;
     height: 6px;
     background: url(../assets/images/arrow.svg) no-repeat center center;
