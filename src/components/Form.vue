@@ -57,7 +57,12 @@
         </div>
       </div>
     </div>
-    <button class="form__button" type="submit" :disabled="v$.$invalid">
+    <button
+      class="form__button"
+      type="button"
+      :disabled="v$.$invalid"
+      @click="addCard"
+    >
       Добавить товар
     </button>
   </form>
@@ -66,6 +71,7 @@
 <script>
 import useVuelidate from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
+
 export default {
   name: "FormBlock",
   setup() {
@@ -73,11 +79,33 @@ export default {
   },
   data() {
     return {
+      link: null,
       name: null,
       desc: null,
-      link: null,
       price: null,
     };
+  },
+
+  methods: {
+    addCard() {
+      // console.log({
+      //   link: this.link,
+      //   name: this.name,
+      //   desc: this.desc,
+      //   price: this.price,
+      // });
+
+      this.$store.dispatch("addCard", {
+        link: this.link,
+        name: this.name,
+        desc: this.desc,
+        price: this.price,
+      });
+
+      this.name = this.desc = this.link = this.price = "";
+      this.v$.$reset();
+      console.log(this.$store.state.items);
+    },
   },
 
   validations() {

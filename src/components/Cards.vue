@@ -1,14 +1,13 @@
 <template>
   <div class="cards">
-    <article class="card" v-for="(item, index) in items" :key="index">
+    <article class="card" v-for="(item, index) in cards" :key="index">
       <button class="card__button">
         <img src="../assets/images/delete.svg" alt="" />
       </button>
-      <img class="card__image" :src="item.image" alt="" />
+      <img class="card__image" :src="item.link" alt="" />
       <div class="card__info">
-        <h3 class="card__title">{{ item.title }}</h3>
+        <h3 class="card__title">{{ item.name }}</h3>
         <p class="card__desc">{{ item.desc }}</p>
-        <!-- <p class="card__price">{{ filtered(item.price) }} руб.</p> -->
         <p class="card__price">{{ item.price }} руб.</p>
       </div>
     </article>
@@ -16,62 +15,18 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "CardsBlock",
-  data() {
-    return {
-      items: [
-        {
-          image: require("../assets/images/polaroid.jpg"),
-          title:
-            "Наименование товара интересное описание товара в несколько строк",
-          desc: "Довольно-таки интересное описание товара в несколько строк",
-          price: "5 000",
-        },
-        {
-          image: require("../assets/images/polaroid.jpg"),
-          title: "Наименование товара",
-          desc: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
-          price: "10 000",
-        },
-        {
-          image: require("../assets/images/polaroid.jpg"),
-          title: "Наименование товара",
-          desc: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
-          price: "10 000",
-        },
-        {
-          image: require("../assets/images/polaroid.jpg"),
-          title: "Наименование товара",
-          desc: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
-          price: "1000",
-        },
-        {
-          image: require("../assets/images/polaroid.jpg"),
-          title: "Наименование товара",
-          desc: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
-          price: "10 000",
-        },
-        {
-          image: require("../assets/images/polaroid.jpg"),
-          title: "Наименование товара",
-          desc: "Довольно-таки интересное",
-          price: "1000 000 000",
-        },
-        {
-          image: require("../assets/images/polaroid.jpg"),
-          title: "Наименование товара",
-          desc: "Довольно-таки интересное",
-          price: "15 000",
-        },
-      ],
-    };
-  },
 
   methods: {
     filtered(price) {
       return Number(price.replace(/\s+/g, "")).toLocaleString("ru-RU");
     },
+  },
+
+  computed: {
+    ...mapGetters(["cards"]),
   },
 };
 </script>
@@ -135,11 +90,18 @@ export default {
     }
 
     &__image {
+      height: 200px;
       //display: block;
       //min-height: 200px;
       //height: auto;
       //width: 100%;
-      //object-fit: cover;
+      object-fit: cover;
+
+      @media screen and (max-width: $tablet - 1px) {
+        //min-height: auto;
+        //height: auto;
+        height: 296px;
+      }
     }
 
     &__info {
