@@ -49,6 +49,7 @@
         placeholder="Введите цену"
         v-model="price"
         :v="v$.price"
+        v-maska="'## ###'"
       />
       <div class="form__errors">
         <div v-for="(error, index) of v$.price.$errors" :key="index">
