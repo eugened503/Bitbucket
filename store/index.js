@@ -7,7 +7,7 @@ export default createStore({
         link: require("@/assets/images/polaroid.jpg"),
         name: "Наименование товара интересное описание товара в несколько строк",
         desc: "Довольно-таки интересное описание товара в несколько строк",
-        price: "5 000",
+        price: "15 000",
       },
       {
         link: require("@/assets/images/polaroid.jpg"),
@@ -25,7 +25,7 @@ export default createStore({
         link: require("@/assets/images/polaroid.jpg"),
         name: "Наименование товара",
         desc: "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
-        price: "1000",
+        price: "17 000",
       },
       {
         link: require("@/assets/images/polaroid.jpg"),
@@ -37,7 +37,7 @@ export default createStore({
         link: require("@/assets/images/polaroid.jpg"),
         name: "Наименование товара",
         desc: "Довольно-таки интересное",
-        price: "1000 000 000",
+        price: "12 000",
       },
     ],
   },

@@ -66,14 +66,24 @@
       Добавить товар
     </button>
   </form>
+  <modal :showModal="showModal" @close="showModal = false">
+    <template v-slot:header>
+      <h3>Карточка успешно добавлена!</h3>
+    </template>
+    <template v-slot:body>
+      <p>Поздравляем! Карточка успешно добавлена в общий список товаров! 🎉</p>
+    </template>
+  </modal>
 </template>
 
 <script>
 import useVuelidate from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
+import Modal from "@/components/Modal.vue";
 
 export default {
   name: "FormBlock",
+  components: { Modal },
   setup() {
     return { v$: useVuelidate() };
   },
@@ -83,6 +93,7 @@ export default {
       name: null,
       desc: null,
       price: null,
+      showModal: false,
     };
   },
 
@@ -104,6 +115,7 @@ export default {
 
       this.name = this.desc = this.link = this.price = "";
       this.v$.$reset();
+      setTimeout(() => (this.showModal = true), 700);
       //console.log(this.$store.state.items);
     },
   },
