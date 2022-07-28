@@ -3,12 +3,17 @@
     <div class="form__field">
       <label class="form__label">Наименование товара</label>
       <input
+        v-model="name"
+        :v="v$.name"
         type="text"
         class="form__input"
+        :class="{ error: v$.name.$errors.length }"
         placeholder="Введите наименование товара"
       />
-      <div class="form__error-wrapper">
-        <span class="form__error">Поле является обязательным</span>
+      <div class="form__errors">
+        <div v-for="(error, index) of v$.name.$errors" :key="index">
+          <p class="form__error">{{ error.$message }}</p>
+        </div>
       </div>
     </div>
     <div class="form__field">
@@ -16,35 +21,127 @@
       <textarea
         class="textarea form__input"
         placeholder="Введите описание товара"
+        v-model="desc"
       />
     </div>
     <div class="form__field">
       <label class="form__label">Ссылка на изображение товара</label>
-      <input type="text" class="form__input" placeholder="Введите ссылку" />
-      <div class="form__error-wrapper">
-        <span class="form__error">Поле является обязательным</span>
+      <input
+        type="text"
+        class="form__input"
+        :class="{ error: v$.link.$errors.length }"
+        v-model="link"
+        :v="v$.link"
+        placeholder="Введите ссылку"
+      />
+      <div class="form__errors">
+        <div v-for="(error, index) of v$.link.$errors" :key="index">
+          <p class="form__error">{{ error.$message }}</p>
+        </div>
       </div>
     </div>
     <div class="form__field">
       <label class="form__label">Цена товара</label>
-      <input type="text" class="form__input" placeholder="Введите цену" />
-      <div class="form__error-wrapper">
-        <span class="form__error">Поле является обязательным</span>
+      <input
+        type="text"
+        class="form__input"
+        :class="{ error: v$.price.$errors.length }"
+        placeholder="Введите цену"
+        v-model="price"
+        :v="v$.price"
+        v-maska="'## ###'"
+      />
+      <div class="form__errors">
+        <div v-for="(error, index) of v$.price.$errors" :key="index">
+          <p class="form__error">{{ error.$message }}</p>
+        </div>
       </div>
     </div>
-    <button class="form__button" type="submit" disabled>Добавить товар</button>
+    <button
+      class="form__button"
+      type="button"
+      :disabled="v$.$invalid"
+      @click="addCard"
+    >
+      Добавить товар
+    </button>
   </form>
+  <modal :showModal="showModal" @close="showModal = false">
+    <template v-slot:header>
+      <h3>Карточка успешно добавлена!</h3>
+    </template>
+    <template v-slot:body>
+      <p>Поздравляем! Карточка успешно добавлена в общий список товаров! 🎉</p>
+    </template>
+  </modal>
 </template>
 
 <script>
+import useVuelidate from "@vuelidate/core";
+import { required, helpers } from "@vuelidate/validators";
+import Modal from "@/components/Modal.vue";
+
 export default {
   name: "FormBlock",
+  components: { Modal },
+  setup() {
+    return { v$: useVuelidate() };
+  },
+  data() {
+    return {
+      link: null,
+      name: null,
+      desc: null,
+      price: null,
+      showModal: false,
+    };
+  },
+
+  methods: {
+    addCard() {
+      // console.log({
+      //   link: this.link,
+      //   name: this.name,
+      //   desc: this.desc,
+      //   price: this.price,
+      // });
+
+      this.$store.dispatch("addCard", {
+        id: Math.random().toString(16).slice(2),
+        link: this.link,
+        name: this.name,
+        desc: this.desc,
+        price: this.price,
+      });
+
+      this.name = this.desc = this.link = this.price = "";
+      this.v$.$reset();
+      setTimeout(() => (this.showModal = true), 700);
+      //console.log(this.$store.state.items);
+    },
+  },
+
+  validations() {
+    return {
+      name: {
+        $autoDirty: true,
+        required: helpers.withMessage("Поле является обязательным", required),
+      },
+      link: {
+        $autoDirty: true,
+        required: helpers.withMessage("Поле является обязательным", required),
+      },
+      price: {
+        $autoDirty: true,
+        required: helpers.withMessage("Поле является обязательным", required),
+      },
+    };
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .form {
-  //max-width: 332px;
   padding: 24px;
   background: #fffefb;
   box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04),
@@ -97,13 +194,19 @@ export default {
       border-radius: 50%;
     }
   }
+
+  &__errors {
+    margin: 4px 0 0;
+    min-height: 10px;
+  }
+
   &__input {
     display: block;
     margin: 4px 0 0;
     width: 100%;
     padding: 10px 16px 11px;
     background: #fffefb;
-    border: none;
+    border: 1px solid transparent;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     font-size: 12px;
@@ -115,19 +218,21 @@ export default {
       line-height: 15px;
       color: #b4b4b4;
     }
-  }
 
-  &__error-wrapper {
-    min-height: 16px;
+    &.error {
+      border: 1px solid #ff8484;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      animation: fade-in 0.7s ease-in;
+    }
   }
 
   &__error {
-    display: none;
-    margin: 4px 0 0;
     font-size: 8px;
     line-height: 10px;
     letter-spacing: -0.02em;
     color: $color-carrot;
+    animation: fade-in 0.7s ease-in;
 
     &.active {
       display: block;
@@ -158,6 +263,15 @@ export default {
       background: #eeeeee;
       box-shadow: none;
     }
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 </style>
