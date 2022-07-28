@@ -1,7 +1,7 @@
 <template>
   <transition-group name="list" tag="div" class="cards">
     <article class="card" v-for="item in cards" :key="item">
-      <button class="card__button">
+      <button class="card__button" @click="deleteCard(item.id)">
         <img src="../assets/images/delete.svg" alt="" />
       </button>
       <img class="card__image" :src="item.link" alt="" />
@@ -20,8 +20,12 @@ export default {
   name: "CardsBlock",
 
   methods: {
-    filtered(price) {
-      return Number(price.replace(/\s+/g, "")).toLocaleString("ru-RU");
+    // filtered(price) {
+    //   return Number(price.replace(/\s+/g, "")).toLocaleString("ru-RU");
+    // },
+
+    deleteCard(id) {
+      this.$store.dispatch("deleteCard", id);
     },
   },
 
@@ -153,7 +157,7 @@ export default {
   }
 }
 .list-leave-active {
-  transform: translate(0, 100%);
+  transform: translate(0, -100%);
   opacity: 0;
   transition: all 0.7s;
 }

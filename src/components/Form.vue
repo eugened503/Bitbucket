@@ -107,6 +107,7 @@ export default {
       // });
 
       this.$store.dispatch("addCard", {
+        id: Math.random().toString(16).slice(2),
         link: this.link,
         name: this.name,
         desc: this.desc,
@@ -251,7 +252,7 @@ export default {
     font-size: 12px;
     line-height: 15px;
     color: #ffffff;
-    transition: background 0.7s ease-in;
+    transition: background 0.3s ease-in;
 
     &:hover {
       background: #54ac46;

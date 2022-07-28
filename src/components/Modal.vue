@@ -35,7 +35,6 @@ export default {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  //transition: opacity 0.7s ease;
 }
 
 .modal {
@@ -44,7 +43,6 @@ export default {
   background-color: #fff;
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-  //transition: all 0.7s ease;
 
   &__header {
     font-size: 20px;
@@ -69,6 +67,7 @@ export default {
     font-size: 12px;
     line-height: 15px;
     color: #ffffff;
+    transition: background 0.3s ease-in;
 
     &:hover {
       background: #54ac46;
