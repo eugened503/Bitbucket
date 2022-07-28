@@ -7,7 +7,7 @@ export default createStore({
       {
         id: 1,
         link: require("@/assets/images/polaroid.jpg"),
-        name: "Наименование товара интересное описание товара в несколько строк",
+        name: "Азбука",
         desc: "Довольно-таки интересное описание товара в несколько строк",
         price: "15 000",
       },
@@ -42,11 +42,12 @@ export default createStore({
       {
         id: 6,
         link: require("@/assets/images/polaroid.jpg"),
-        name: "Наименование товара",
+        name: "Янтарь",
         desc: "Довольно-таки интересное",
         price: "12 000",
       },
     ],
+    change: false,
   },
   actions: {
     addCard(context, card) {
@@ -59,15 +60,21 @@ export default createStore({
   mutations: {
     ADD_CARD(state, card) {
       state.items.unshift(card);
+      state.change = true;
     },
 
     DELETE_CARD(state, id) {
       state.items = state.items.filter((item) => item.id != id);
+      state.change = true;
     },
   },
   getters: {
     cards(state) {
       return state.items;
+    },
+
+    change(state) {
+      return state.change;
     },
   },
 

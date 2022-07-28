@@ -74,12 +74,14 @@
       <p>Поздравляем! Карточка успешно добавлена в общий список товаров! 🎉</p>
     </template>
   </modal>
+  <!-- <preloader /> -->
 </template>
 
 <script>
 import useVuelidate from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 import Modal from "@/components/Modal.vue";
+//import Preloader from "@/components/Preloader.vue";
 
 export default {
   name: "FormBlock",
@@ -99,13 +101,6 @@ export default {
 
   methods: {
     addCard() {
-      // console.log({
-      //   link: this.link,
-      //   name: this.name,
-      //   desc: this.desc,
-      //   price: this.price,
-      // });
-
       this.$store.dispatch("addCard", {
         id: Math.random().toString(16).slice(2),
         link: this.link,
@@ -116,8 +111,7 @@ export default {
 
       this.name = this.desc = this.link = this.price = "";
       this.v$.$reset();
-      setTimeout(() => (this.showModal = true), 700);
-      //console.log(this.$store.state.items);
+      setTimeout(() => (this.showModal = true), 1000);
     },
   },
 
