@@ -12,12 +12,28 @@
       </div>
     </article>
   </transition-group>
+  <modal :showModal="showModal" @close="showModal = false">
+    <template v-slot:header>
+      <h3>Товар удален!</h3>
+    </template>
+    <template v-slot:body>
+      <p>Ваша карточка успешно удалена из общего списка товаров. 🗑</p>
+    </template>
+  </modal>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import Modal from "@/components/Modal.vue";
 export default {
   name: "CardsBlock",
+  components: { Modal },
+
+  data() {
+    return {
+      showModal: false,
+    };
+  },
 
   methods: {
     // filtered(price) {
@@ -26,6 +42,7 @@ export default {
 
     deleteCard(id) {
       this.$store.dispatch("deleteCard", id);
+      setTimeout(() => (this.showModal = true), 700);
     },
   },
 
