@@ -64,17 +64,11 @@ export default {
     },
 
     sortByPriceMin(a, b) {
-      return Number(a.price.replace(/\s+/g, "")) >
-        Number(b.price.replace(/\s+/g, ""))
-        ? 1
-        : -1;
+      return a.price > b.price ? 1 : -1;
     },
 
     sortByPriceMax(a, b) {
-      return Number(a.price.replace(/\s+/g, "")) <
-        Number(b.price.replace(/\s+/g, ""))
-        ? 1
-        : -1;
+      return a.price < b.price ? 1 : -1;
     },
 
     sortByNameMin(a, b) {
