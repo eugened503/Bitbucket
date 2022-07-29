@@ -29,13 +29,13 @@ export default {
   width: 50px;
 
   &::after {
-    animation: ball2 1s infinite;
+    animation: ball-last 1s infinite;
     background-color: #00a096;
     box-shadow: 30px 0 0 #97bf0d;
   }
 
   &::before {
-    animation: ball1 1s infinite;
+    animation: ball-first 1s infinite;
     background-color: #cb2025;
     box-shadow: 30px 0 0 #f8b334;
     margin-bottom: 10px;
@@ -63,7 +63,7 @@ export default {
   }
 }
 
-@keyframes ball1 {
+@keyframes ball-first {
   0% {
     box-shadow: 30px 0 0 #f8b334;
   }
@@ -78,7 +78,7 @@ export default {
   }
 }
 
-@keyframes ball2 {
+@keyframes ball-last {
   0% {
     box-shadow: 30px 0 0 #97bf0d;
   }
