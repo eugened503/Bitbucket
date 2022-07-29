@@ -85,8 +85,8 @@ export default {
     content: "";
     position: absolute;
     z-index: 1;
-    top: 45%;
-    right: 16px;
+    top: 15px;
+    right: 15px;
     width: 8px;
     height: 6px;
     background: url(../assets/images/arrow.svg) no-repeat center center;
