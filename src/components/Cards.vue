@@ -39,7 +39,6 @@ export default {
     deleteCard(id) {
       this.$store.dispatch("deleteCard", id);
       setTimeout(() => (this.showModal = true), 1000);
-      //window.localStorage.clear();
     },
   },
 
