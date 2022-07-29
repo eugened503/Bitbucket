@@ -3,10 +3,10 @@
     <div class="modal-mask" v-if="showModal">
       <div class="modal">
         <div class="modal__header">
-          <slot name="header"> default header </slot>
+          <slot name="header"></slot>
         </div>
         <div class="modal__body">
-          <slot name="body"> default body </slot>
+          <slot name="body"></slot>
         </div>
         <button class="modal__button" @click="$emit('close')">OK</button>
       </div>

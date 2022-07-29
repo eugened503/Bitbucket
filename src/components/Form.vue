@@ -74,14 +74,12 @@
       <p>Поздравляем! Карточка успешно добавлена в общий список товаров! 🎉</p>
     </template>
   </modal>
-  <!-- <preloader /> -->
 </template>
 
 <script>
 import useVuelidate from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 import Modal from "@/components/Modal.vue";
-//import Preloader from "@/components/Preloader.vue";
 
 export default {
   name: "FormBlock",
