@@ -40,11 +40,11 @@
         </div>
       </div>
     </div>
-    <div class="form__field">
+    <div class="field-prise form__field">
       <label class="form__label">Цена товара</label>
       <input
         type="text"
-        class="form__input"
+        class="input-prise form__input"
         :class="{ error: v$.price.$errors.length }"
         placeholder="Введите цену"
         v-model="price"
@@ -136,25 +136,31 @@ export default {
 
 <style lang="scss" scoped>
 .form {
-  padding: 24px;
+  padding: 18px 24px 24px 24px;
   background: $main-bg-color;
   box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04),
     0px 6px 10px rgba(0, 0, 0, 0.02);
   border-radius: 4px;
 
-  @media screen and (max-width: $laptop-small - 1px) {
-    max-width: none;
+  .field-prise {
+    margin: 0;
   }
 
   &__field {
     .textarea {
-      min-height: 108px;
+      padding: 10px 16px 11px;
+      margin: 0;
+      min-height: 109px;
       resize: none;
       outline: none;
 
       &::after {
         background: none;
       }
+    }
+
+    .input-prise {
+      margin: 1px 0 0;
     }
 
     &:nth-child(2) {
@@ -164,7 +170,7 @@ export default {
     }
 
     &:nth-child(3) {
-      margin: 16px 0 0;
+      margin: 12px 0 0;
     }
   }
 
@@ -180,7 +186,7 @@ export default {
       content: "";
       position: absolute;
       top: 0px;
-      right: -6px;
+      right: -4px;
       display: block;
       width: 4px;
       height: 4px;
@@ -191,12 +197,12 @@ export default {
 
   &__errors {
     margin: 4px 0 0;
-    min-height: 10px;
+    min-height: 7px;
   }
 
   &__input {
     display: block;
-    margin: 4px 0 0;
+    margin: 3px 0 0;
     width: 100%;
     padding: 10px 16px 11px;
     background: $main-bg-color;
@@ -223,7 +229,7 @@ export default {
 
   &__error {
     font-size: 8px;
-    line-height: 10px;
+    line-height: 7px;
     letter-spacing: -0.02em;
     color: $color-carrot;
     animation: fade-in 0.7s ease-in;
@@ -235,7 +241,7 @@ export default {
 
   &__button {
     width: 100%;
-    margin: 24px 0 0;
+    margin: 13px 0 0;
     padding: 10px 92px 11px 96px;
     background: $color-green;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);

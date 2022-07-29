@@ -48,6 +48,7 @@ export default createStore({
       },
     ],
   },
+
   actions: {
     addCard(context, card) {
       context.commit("ADD_CARD", card);
@@ -56,6 +57,7 @@ export default createStore({
       context.commit("DELETE_CARD", id);
     },
   },
+
   mutations: {
     ADD_CARD(state, card) {
       state.items.unshift(card);
@@ -65,13 +67,10 @@ export default createStore({
       state.items = state.items.filter((item) => item.id != id);
     },
   },
+
   getters: {
     cards(state) {
       return state.items;
-    },
-
-    change(state) {
-      return state.change;
     },
   },
 
