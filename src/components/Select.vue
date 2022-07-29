@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 export default {
   name: "SelectBlock",
   data() {
@@ -41,10 +40,6 @@ export default {
     this.cloneItems = this.$store.state.items.slice();
   },
 
-  computed: {
-    ...mapGetters(["change"]),
-  },
-
   methods: {
     sortedList(sortParam) {
       switch (sortParam) {
@@ -57,18 +52,24 @@ export default {
         case "nameMax":
           return this.$store.state.items.sort(this.sortByNameMax);
         case "default":
-          return this.sortDefault();
+          return this.$store.state.items.sort(() => Math.random() - 0.5);
         default:
           return this.$store.state.items;
       }
     },
 
     sortByPriceMin(a, b) {
-      return a.price > b.price ? 1 : -1;
+      return Number(a.price.replace(/\s+/g, "")) >
+        Number(b.price.replace(/\s+/g, ""))
+        ? 1
+        : -1;
     },
 
     sortByPriceMax(a, b) {
-      return a.price < b.price ? 1 : -1;
+      return Number(a.price.replace(/\s+/g, "")) <
+        Number(b.price.replace(/\s+/g, ""))
+        ? 1
+        : -1;
     },
 
     sortByNameMin(a, b) {
@@ -77,18 +78,6 @@ export default {
 
     sortByNameMax(a, b) {
       return a.name.toLowerCase() < b.name.toLowerCase() ? 1 : -1;
-    },
-
-    sortByIdMin(a, b) {
-      return a.id > b.id ? 1 : -1;
-    },
-
-    sortDefault() {
-      let storageItems = JSON.parse(localStorage.getItem("vuex"))?.items;
-      let res = this.change
-        ? storageItems
-        : this.cloneItems.sort(this.sortByIdMin);
-      return (this.$store.state.items = res);
     },
   },
 };

@@ -47,7 +47,6 @@ export default createStore({
         price: "12 000",
       },
     ],
-    change: false,
   },
   actions: {
     addCard(context, card) {
@@ -60,12 +59,10 @@ export default createStore({
   mutations: {
     ADD_CARD(state, card) {
       state.items.unshift(card);
-      state.change = true;
     },
 
     DELETE_CARD(state, id) {
       state.items = state.items.filter((item) => item.id != id);
-      state.change = true;
     },
   },
   getters: {
