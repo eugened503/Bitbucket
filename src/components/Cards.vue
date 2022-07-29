@@ -73,7 +73,7 @@ export default {
     flex-direction: column;
     margin: 0 0 16px;
     width: percentage(332/1028);
-    background: #fffefb;
+    background: $main-bg-color;
     box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04),
       0px 6px 10px rgba(0, 0, 0, 0.02);
     border-radius: 4px;
@@ -140,7 +140,7 @@ export default {
       font-weight: 600;
       font-size: 20px;
       line-height: 25px;
-      color: #3f3f3f;
+      color: $color-black;
       word-wrap: break-word;
     }
 
@@ -149,7 +149,7 @@ export default {
       margin: 16px 0 32px;
       font-size: 16px;
       line-height: 20px;
-      color: #3f3f3f;
+      color: $color-black;
       overflow: hidden;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
@@ -168,7 +168,7 @@ export default {
       font-weight: 600;
       font-size: 24px;
       line-height: 30px;
-      color: #3f3f3f;
+      color: $color-black;
       word-wrap: break-word;
     }
   }

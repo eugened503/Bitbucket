@@ -32,12 +32,7 @@ export default {
         { text: "По имени А-Я", value: "nameMin" },
         { text: "По имени Я-А", value: "nameMax" },
       ],
-      cloneItems: [],
     };
-  },
-
-  mounted() {
-    this.cloneItems = this.$store.state.items.slice();
   },
 
   methods: {
@@ -103,19 +98,19 @@ export default {
     max-width: 121.49px;
     padding: 10px 27.49px 11px 16px;
     border: none;
-    background: #fffefb;
+    background: $main-bg-color;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     font-size: 12px;
     line-height: 15px;
-    color: #b4b4b4;
+    color: $color-gray;
     appearance: none;
     cursor: pointer;
 
     &__option {
       font-size: 12px;
       line-height: 15px;
-      color: #b4b4b4;
+      color: $color-gray;
     }
   }
 }

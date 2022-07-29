@@ -58,7 +58,7 @@ export default {
     width: 100%;
     margin: 24px 0 0;
     padding: 10px 92px 11px 96px;
-    background: #7bae73;
+    background: $color-green;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     font-family: "Inter";
@@ -66,7 +66,7 @@ export default {
     font-weight: 600;
     font-size: 12px;
     line-height: 15px;
-    color: #ffffff;
+    color: $color-white;
     transition: background 0.3s ease-in;
 
     &:hover {

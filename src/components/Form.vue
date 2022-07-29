@@ -137,7 +137,7 @@ export default {
 <style lang="scss" scoped>
 .form {
   padding: 24px;
-  background: #fffefb;
+  background: $main-bg-color;
   box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04),
     0px 6px 10px rgba(0, 0, 0, 0.02);
   border-radius: 4px;
@@ -199,22 +199,22 @@ export default {
     margin: 4px 0 0;
     width: 100%;
     padding: 10px 16px 11px;
-    background: #fffefb;
+    background: $main-bg-color;
     border: 1px solid transparent;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     font-size: 12px;
     line-height: 15px;
-    color: #3f3f3f;
+    color: $color-black;
 
     &::placeholder {
       font-size: 12px;
       line-height: 15px;
-      color: #b4b4b4;
+      color: $color-gray;
     }
 
     &.error {
-      border: 1px solid #ff8484;
+      border: 1px solid $color-carrot;
       box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
       border-radius: 4px;
       animation: fade-in 0.7s ease-in;
@@ -237,7 +237,7 @@ export default {
     width: 100%;
     margin: 24px 0 0;
     padding: 10px 92px 11px 96px;
-    background: #7bae73;
+    background: $color-green;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     font-family: "Inter";
@@ -245,7 +245,7 @@ export default {
     font-weight: 600;
     font-size: 12px;
     line-height: 15px;
-    color: #ffffff;
+    color: $color-white;
     transition: background 0.3s ease-in;
 
     &:hover {
@@ -253,7 +253,7 @@ export default {
     }
 
     &:disabled {
-      color: #b4b4b4;
+      color: $color-gray;
       background: #eeeeee;
       box-shadow: none;
     }
