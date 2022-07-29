@@ -13,6 +13,5 @@ export default {
 <style lang="scss" scoped>
 #app {
   background: #e5e5e5;
-  //background: rgba(255, 254, 251, 0.8);
 }
 </style>

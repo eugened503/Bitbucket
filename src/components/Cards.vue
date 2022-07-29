@@ -12,20 +12,33 @@
       </div>
     </article>
   </transition-group>
+  <modal :showModal="showModal" @close="showModal = false">
+    <template v-slot:header>
+      <h3>Товар удален!</h3>
+    </template>
+    <template v-slot:body>
+      <p>Ваша карточка успешно удалена из общего списка товаров. 🗑</p>
+    </template>
+  </modal>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import Modal from "@/components/Modal.vue";
 export default {
   name: "CardsBlock",
+  components: { Modal },
+
+  data() {
+    return {
+      showModal: false,
+    };
+  },
 
   methods: {
-    // filtered(price) {
-    //   return Number(price.replace(/\s+/g, "")).toLocaleString("ru-RU");
-    // },
-
     deleteCard(id) {
       this.$store.dispatch("deleteCard", id);
+      setTimeout(() => (this.showModal = true), 1000);
     },
   },
 
@@ -39,10 +52,13 @@ export default {
 .cards {
   display: flex;
   width: percentage(1028/1376);
-  //margin: 0 0 0 percentage(16/1376);
   margin: 0 0 0 16px;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
+
+  @media screen and (max-width: $laptop-small - 1px) {
+    justify-content: space-between;
+  }
 
   @media screen and (max-width: $tablet - 1px) {
     display: block;
@@ -56,15 +72,22 @@ export default {
     flex-direction: column;
     margin: 0 0 16px;
     width: percentage(332/1028);
-    background: #fffefb;
+    background: $main-bg-color;
     box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04),
       0px 6px 10px rgba(0, 0, 0, 0.02);
     border-radius: 4px;
-    //transition: all 1s;
     cursor: pointer;
 
     &:hover .card__button {
       display: flex;
+    }
+
+    &:nth-child(3n-1) {
+      margin: 0 percentage(16/1028) 16px;
+
+      @media screen and (max-width: $laptop-small - 1px) {
+        margin: 0 0 16px;
+      }
     }
 
     @media screen and (max-width: $laptop-small - 1px) {
@@ -96,15 +119,10 @@ export default {
 
     &__image {
       height: 200px;
-      //display: block;
-      //min-height: 200px;
-      //height: auto;
-      //width: 100%;
       object-fit: cover;
+      border-radius: 4px 4px 0 0;
 
       @media screen and (max-width: $tablet - 1px) {
-        //min-height: auto;
-        //height: auto;
         height: 296px;
       }
     }
@@ -114,7 +132,6 @@ export default {
       display: flex;
       flex-direction: column;
       padding: 0 16px 24px;
-      //min-height: 207px;
     }
 
     &__title {
@@ -122,7 +139,7 @@ export default {
       font-weight: 600;
       font-size: 20px;
       line-height: 25px;
-      color: #3f3f3f;
+      color: $color-black;
       word-wrap: break-word;
     }
 
@@ -131,7 +148,7 @@ export default {
       margin: 16px 0 32px;
       font-size: 16px;
       line-height: 20px;
-      color: #3f3f3f;
+      color: $color-black;
       overflow: hidden;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
@@ -142,7 +159,6 @@ export default {
 
       @media screen and (max-width: $laptop-small - 1px) {
         -webkit-line-clamp: 2;
-        //min-height: 40px;
       }
     }
 
@@ -151,16 +167,18 @@ export default {
       font-weight: 600;
       font-size: 24px;
       line-height: 30px;
-      color: #3f3f3f;
+      color: $color-black;
       word-wrap: break-word;
     }
   }
 }
+
 .list-leave-active {
   transform: translate(0, -100%);
   opacity: 0;
   transition: all 0.7s;
 }
+
 .list-move {
   transition: transform 0.7s;
 }

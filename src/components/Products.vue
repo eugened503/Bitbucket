@@ -6,7 +6,14 @@
     </div>
     <div class="products__body">
       <Form />
-      <Cards />
+      <Suspense>
+        <template #default>
+          <Cards />
+        </template>
+        <template #fallback>
+          <Preloader />
+        </template>
+      </Suspense>
     </div>
   </div>
 </template>
@@ -14,10 +21,17 @@
 <script>
 import Select from "@/components/Select.vue";
 import Form from "@/components/Form.vue";
-import Cards from "@/components/Cards.vue";
+import Preloader from "@/components/Preloader.vue";
+
+import { defineAsyncComponent } from "vue";
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const Cards = defineAsyncComponent(async () => {
+  await sleep(1000);
+  return import("@/components/Cards.vue");
+});
 
 export default {
-  components: { Select, Form, Cards },
+  components: { Select, Form, Cards, Preloader },
   name: "ProductsBlock",
 };
 </script>

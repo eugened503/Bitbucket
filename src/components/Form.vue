@@ -40,16 +40,16 @@
         </div>
       </div>
     </div>
-    <div class="form__field">
+    <div class="field-prise form__field">
       <label class="form__label">Цена товара</label>
       <input
         type="text"
-        class="form__input"
+        class="input-prise form__input"
         :class="{ error: v$.price.$errors.length }"
         placeholder="Введите цену"
         v-model="price"
         :v="v$.price"
-        v-maska="'## ###'"
+        v-maska="['# ###', '## ###', '### ###', '#### ###']"
       />
       <div class="form__errors">
         <div v-for="(error, index) of v$.price.$errors" :key="index">
@@ -99,13 +99,6 @@ export default {
 
   methods: {
     addCard() {
-      // console.log({
-      //   link: this.link,
-      //   name: this.name,
-      //   desc: this.desc,
-      //   price: this.price,
-      // });
-
       this.$store.dispatch("addCard", {
         id: Math.random().toString(16).slice(2),
         link: this.link,
@@ -116,8 +109,7 @@ export default {
 
       this.name = this.desc = this.link = this.price = "";
       this.v$.$reset();
-      setTimeout(() => (this.showModal = true), 700);
-      //console.log(this.$store.state.items);
+      setTimeout(() => (this.showModal = true), 1000);
     },
   },
 
@@ -142,25 +134,31 @@ export default {
 
 <style lang="scss" scoped>
 .form {
-  padding: 24px;
-  background: #fffefb;
+  padding: 18px 24px 24px 24px;
+  background: $main-bg-color;
   box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04),
     0px 6px 10px rgba(0, 0, 0, 0.02);
   border-radius: 4px;
 
-  @media screen and (max-width: $laptop-small - 1px) {
-    max-width: none;
+  .field-prise {
+    margin: 0;
   }
 
   &__field {
     .textarea {
-      min-height: 108px;
+      padding: 10px 16px 11px;
+      margin: 0;
+      min-height: 109px;
       resize: none;
       outline: none;
 
       &::after {
         background: none;
       }
+    }
+
+    .input-prise {
+      margin: 1px 0 0;
     }
 
     &:nth-child(2) {
@@ -170,7 +168,7 @@ export default {
     }
 
     &:nth-child(3) {
-      margin: 16px 0 0;
+      margin: 12px 0 0;
     }
   }
 
@@ -186,7 +184,7 @@ export default {
       content: "";
       position: absolute;
       top: 0px;
-      right: -6px;
+      right: -4px;
       display: block;
       width: 4px;
       height: 4px;
@@ -197,30 +195,30 @@ export default {
 
   &__errors {
     margin: 4px 0 0;
-    min-height: 10px;
+    min-height: 7px;
   }
 
   &__input {
     display: block;
-    margin: 4px 0 0;
+    margin: 3px 0 0;
     width: 100%;
     padding: 10px 16px 11px;
-    background: #fffefb;
+    background: $main-bg-color;
     border: 1px solid transparent;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     font-size: 12px;
     line-height: 15px;
-    color: #3f3f3f;
+    color: $color-black;
 
     &::placeholder {
       font-size: 12px;
       line-height: 15px;
-      color: #b4b4b4;
+      color: $color-gray;
     }
 
     &.error {
-      border: 1px solid #ff8484;
+      border: 1px solid $color-carrot;
       box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
       border-radius: 4px;
       animation: fade-in 0.7s ease-in;
@@ -229,7 +227,7 @@ export default {
 
   &__error {
     font-size: 8px;
-    line-height: 10px;
+    line-height: 7px;
     letter-spacing: -0.02em;
     color: $color-carrot;
     animation: fade-in 0.7s ease-in;
@@ -241,9 +239,9 @@ export default {
 
   &__button {
     width: 100%;
-    margin: 24px 0 0;
+    margin: 13px 0 0;
     padding: 10px 92px 11px 96px;
-    background: #7bae73;
+    background: $color-green;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     font-family: "Inter";
@@ -251,7 +249,7 @@ export default {
     font-weight: 600;
     font-size: 12px;
     line-height: 15px;
-    color: #ffffff;
+    color: $color-white;
     transition: background 0.3s ease-in;
 
     &:hover {
@@ -259,7 +257,7 @@ export default {
     }
 
     &:disabled {
-      color: #b4b4b4;
+      color: $color-gray;
       background: #eeeeee;
       box-shadow: none;
     }
